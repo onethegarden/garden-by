@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Link } from 'gatsby'
-import { string } from 'yargs'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 
 const Container = styled.main`
     margin: auto;
@@ -24,19 +23,38 @@ const NavLinks = styled.ul`
         color: black;
     }
 `;
+const SiteTitle = styled.p`
+    font-size: 3rem;
+    color: gray;
+    font-weight: 700;
+  
+`;
 
 type LayoutType = {
     pageTitle: string;
     children: any;
 }
 const Layout = ({ pageTitle, children }: LayoutType) => {
+
+    const data = useStaticQuery(graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`)
     return (
         <Container>
             <Heading>{pageTitle}</Heading>
+            <title>{pageTitle} | {data.site.siteMetadata.title}</title>
+            <SiteTitle>{data.site.siteMetadata.title}</SiteTitle>
             <nav>
                 <NavLinks>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About</Link></li>
+                    <li><Link to="/blog">Blog</Link></li>
                 </NavLinks>
             </nav>
             <h1>{pageTitle}</h1>
