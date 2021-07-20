@@ -14,8 +14,9 @@ module.exports = {
       options: {
         name: `blog`,
         path: `${__dirname}/src/blog`,
-      }
+      },
     },
     "gatsby-plugin-mdx",
+    `gatsby-transformer-remark`,
   ],
 };
