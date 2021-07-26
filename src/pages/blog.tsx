@@ -11,16 +11,19 @@ const Article = styled.article`
   }
 `;
 
-const BlogPage = ({ data }: any) => {
+const BlogPage = (data: Data) => {
+  const { edges } = data.allMarkdownRemark;
   return (
     <Layout pageTitle="Blog">
       <ul>
-        {data.allMarkdownRemark.edges.map((edge: any) => {
+        {edges.map((edge: any) => {
+          const { slug } = edge.node.fields;
+          const { title, date } = edge.node.frontmatter;
           return (
-            <Article key={edge.node.fields.slug}>
-              <Link to={edge.node.fields.slug}>
-                <h2>{edge.node.frontmatter.title}</h2>
-                <p>Posted: {edge.node.frontmatter.date}</p>
+            <Article key={slug}>
+              <Link to={slug}>
+                <h2>{title}</h2>
+                <p>Posted: {date}</p>
               </Link>
             </Article>
           );
@@ -47,15 +50,25 @@ export const query = graphql`
     }
   }
 `;
-// query {
-//   allMarkdownRemark {
-//     edges {
-//       node {
-//         fields {
-//           slug
-//         }
-//       }
-//     }
-//   }
-// }
+
+export interface Data {
+  allMarkdownRemark: AllMarkdownRemark;
+}
+
+export interface AllMarkdownRemark {
+  edges: Edge[];
+}
+
+export interface Edge {
+  node: Node;
+}
+
+export interface Node {
+  html: string;
+  frontmatter: Frontmatter;
+}
+
+export interface Frontmatter {
+  title: string;
+}
 export default BlogPage;

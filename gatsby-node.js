@@ -22,6 +22,7 @@ exports.createPages = async ({ graphql, actions }) => {
             fields {
               slug
             }
+            html
           }
         }
       }
