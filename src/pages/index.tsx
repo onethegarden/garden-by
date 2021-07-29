@@ -19,11 +19,11 @@ const Article = styled.article`
   border-radius: 1rem;
   margin: 1rem;
   padding: 2rem 1rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
   &:hover {
     transform: scale(1.1);
-    transition-duration: 0.3s;
+    transition-duration: 0.4s;
   }
 `;
 

@@ -2,6 +2,10 @@ import React from "react";
 import Layout from "../components/layout";
 import styled from "styled-components";
 import { graphql } from "gatsby";
+import "@deckdeckgo/highlight-code";
+import { defineCustomElements as deckDeckGoElement } from "@deckdeckgo/highlight-code/dist/loader";
+
+deckDeckGoElement();
 
 const MarkdownBlock = styled.div`
   display: flex;

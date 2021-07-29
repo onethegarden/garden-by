@@ -1,7 +1,6 @@
 ---
 layout: post
 title: What is Flux
-date: "2021-07-15"
 ---
 
 

@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Programers JavascriptStudy Review
-date: "2021-06-25"
 ---
 
 

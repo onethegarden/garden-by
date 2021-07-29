@@ -25,9 +25,11 @@ const Layout = ({ pageTitle, children }: LayoutType) => {
         {pageTitle} | {data.site.siteMetadata.title}
       </title>
       <ImageBlock>
-        <img src="https://avatars1.githubusercontent.com/u/51187540?s=460&v=4" />
+        <Link to="/about">
+          <img src="https://avatars1.githubusercontent.com/u/51187540?s=460&v=4" />
+        </Link>
         <SiteTitle>
-          <Link to="/about">{data.site.siteMetadata.title}</Link>
+          <Link to="/">{data.site.siteMetadata.title}</Link>
           <UnderLine />
         </SiteTitle>
       </ImageBlock>
@@ -79,7 +81,8 @@ const NavLinks = styled.ul`
     }
   }
 `;
-const SiteTitle = styled.p`
+
+const SiteTitle = styled.h1`
   a {
     color: #7d7d7d;
     text-decoration: none;
@@ -89,6 +92,10 @@ const SiteTitle = styled.p`
   font-weight: 700;
   margin-left: 2rem;
   padding: 0 2rem 1rem 2rem;
+  transition: 0.3s;
+  &:hover {
+    transform: translate(0, -10px);
+  }
 `;
 
 const UnderLine = styled.div`
@@ -103,6 +110,7 @@ const UnderLine = styled.div`
 `;
 
 const ImageBlock = styled.div`
+  margin: 5rem 0 1.2rem 0;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -110,9 +118,6 @@ const ImageBlock = styled.div`
     width: 100px;
     height: 100px;
     border-radius: 50px;
-  }
-  h1 {
-    margin-left: 50px;
   }
 `;
 
