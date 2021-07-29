@@ -11,8 +11,10 @@ const Article = styled.article`
   }
 `;
 
-const BlogPage = (data: Data) => {
-  const { edges } = data.allMarkdownRemark;
+const BlogPage = (result: Result) => {
+  console.log(result);
+  const { edges } = result.data.allMarkdownRemark;
+  console.log(edges);
   return (
     <Layout pageTitle="Blog">
       <ul>
@@ -50,7 +52,9 @@ export const query = graphql`
     }
   }
 `;
-
+export interface Result {
+  data: Data;
+}
 export interface Data {
   allMarkdownRemark: AllMarkdownRemark;
 }
@@ -64,11 +68,16 @@ export interface Edge {
 }
 
 export interface Node {
-  html: string;
+  fields: Fields;
   frontmatter: Frontmatter;
 }
 
+export interface Fields {
+  slug: string;
+}
+
 export interface Frontmatter {
+  date: string;
   title: string;
 }
 export default BlogPage;
