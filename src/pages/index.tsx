@@ -2,12 +2,28 @@ import React from "react";
 import styled from "styled-components";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/layout";
-import { StaticImage } from "gatsby-plugin-image";
+
+const PostUl = styled.ul`
+  margin-top: 3rem;
+  padding-left: 0;
+`;
 
 const Article = styled.article`
+  h2 {
+    margin: 0;
+  }
   a {
     color: black;
     text-decoration: none;
+  }
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 2rem 1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  &:hover {
+    transform: scale(1.1);
+    transition-duration: 0.3s;
   }
 `;
 
@@ -15,7 +31,7 @@ const IndexPage = (result: Result) => {
   const { edges } = result.data.allMarkdownRemark;
   return (
     <Layout pageTitle="Blog">
-      <ul>
+      <PostUl>
         {edges.map((edge: any) => {
           const { slug } = edge.node.fields;
           const { title, date } = edge.node.frontmatter;
@@ -23,12 +39,12 @@ const IndexPage = (result: Result) => {
             <Article key={slug}>
               <Link to={slug}>
                 <h2>{title}</h2>
-                <p>Posted: {date}</p>
+                <p>last updated: {date}</p>
               </Link>
             </Article>
           );
         })}
-      </ul>
+      </PostUl>
     </Layout>
   );
 };
