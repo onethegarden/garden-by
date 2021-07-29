@@ -33,16 +33,18 @@ const Layout = ({ pageTitle, children }: LayoutType) => {
           <UnderLine />
         </SiteTitle>
       </ImageBlock>
-
-      {children}
+      <Contents>{children}</Contents>
     </Container>
   );
 };
 
 const Container = styled.main`
   margin: auto;
+  padding: 2rem;
   max-width: 600px;
+  min-width: 500px;
   font-family: sans-serif;
+  padding: 1.2rem;
 `;
 
 const SiteTitle = styled.h1`
@@ -78,10 +80,15 @@ const ImageBlock = styled.div`
   justify-content: left;
   align-items: center;
   img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
+    width: 6rem;
+    height: 6rem;
+    margin-left: 2rem;
+    border-radius: 3rem;
   }
+`;
+
+const Contents = styled.section`
+  padding: 1rem;
 `;
 
 export default Layout;
