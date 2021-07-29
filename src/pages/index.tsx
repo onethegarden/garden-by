@@ -3,6 +3,103 @@ import styled from "styled-components";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/layout";
 
+const IndexPage = (result: Result) => {
+  const { edges } = result.data.allMarkdownRemark;
+  return (
+    <Layout pageTitle="Blog">
+      <nav>
+        <NavLinks>
+          <li>
+            <Link to="/">Javascript</Link>
+          </li>
+          <li>
+            <Link to="/">React</Link>
+          </li>
+          <li>
+            <Link to="/">Oracle</Link>
+          </li>
+          <li>
+            <Link to="/">Git</Link>
+          </li>
+        </NavLinks>
+      </nav>
+      <PostUl>
+        {edges.map((edge: Edge) => {
+          const { slug } = edge.node.fields;
+          const { title } = edge.node.frontmatter;
+          const { modifiedTime: date } = edge.node.parent;
+          console.log("tests");
+          return (
+            <Article key={slug}>
+              <Link to={slug}>
+                <h2>{title}</h2>
+
+                <p>last updated: {date ? date : "-"}</p>
+              </Link>
+            </Article>
+          );
+        })}
+      </PostUl>
+    </Layout>
+  );
+};
+
+export const query = graphql`
+  query {
+    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+          parent {
+            ... on File {
+              modifiedTime(formatString: "MMMM D, YYYY")
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export interface Result {
+  data: Data;
+}
+
+export interface Data {
+  allMarkdownRemark: AllMarkdownRemark;
+}
+
+export interface AllMarkdownRemark {
+  edges: Edge[];
+}
+
+export interface Edge {
+  node: Node;
+}
+
+export interface Node {
+  fields: Fields;
+  frontmatter: Frontmatter;
+  parent: Parent;
+}
+
+export interface Fields {
+  slug: string;
+}
+
+export interface Frontmatter {
+  title: string;
+}
+
+export interface Parent {
+  modifiedTime: string;
+}
+
 const PostUl = styled.ul`
   margin-top: 3rem;
   padding-left: 0;
@@ -27,71 +124,27 @@ const Article = styled.article`
   }
 `;
 
-const IndexPage = (result: Result) => {
-  const { edges } = result.data.allMarkdownRemark;
-  return (
-    <Layout pageTitle="Blog">
-      <PostUl>
-        {edges.map((edge: any) => {
-          const { slug } = edge.node.fields;
-          const { title, date } = edge.node.frontmatter;
-          return (
-            <Article key={slug}>
-              <Link to={slug}>
-                <h2>{title}</h2>
-                <p>last updated: {date}</p>
-              </Link>
-            </Article>
-          );
-        })}
-      </PostUl>
-    </Layout>
-  );
-};
-
-export const query = graphql`
-  query {
-    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM D, YYYY")
-            title
-          }
-        }
-      }
+const NavLinks = styled.ul`
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  padding: 0.8rem 1rem;
+  li {
+    margin-right: 1rem;
+    border-radius: 0.3rem;
+    padding: 0.2rem 1rem;
+    background-color: aliceblue;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    &:hover {
+      background-color: #e2f1fd;
+      transition-duration: 0.5s;
+    }
+    a {
+      color: #696969;
+      text-decoration: none;
     }
   }
 `;
-export interface Result {
-  data: Data;
-}
-export interface Data {
-  allMarkdownRemark: AllMarkdownRemark;
-}
 
-export interface AllMarkdownRemark {
-  edges: Edge[];
-}
-
-export interface Edge {
-  node: Node;
-}
-
-export interface Node {
-  fields: Fields;
-  frontmatter: Frontmatter;
-}
-
-export interface Fields {
-  slug: string;
-}
-
-export interface Frontmatter {
-  date: string;
-  title: string;
-}
 export default IndexPage;

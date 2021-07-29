@@ -7,6 +7,46 @@ import { defineCustomElements as deckDeckGoElement } from "@deckdeckgo/highlight
 
 deckDeckGoElement();
 
+const PostTemplate: React.FC = React.memo(
+  ({
+    data: {
+      allMarkdownRemark: { edges },
+    },
+  }: any) => {
+    const {
+      node: { html, frontmatter },
+    } = edges[0];
+    return (
+      <Layout pageTitle="post">
+        <MarkdownBlock
+          dangerouslySetInnerHTML={{ __html: html }}
+        ></MarkdownBlock>
+      </Layout>
+    );
+  }
+);
+
+PostTemplate.displayName = "PostTemplate";
+
+export const queryMarkdownDataBySlug = graphql`
+  query queryMarkdownDataBySlug($slug: String) {
+    allMarkdownRemark(filter: { fields: { slug: { eq: $slug } } }) {
+      edges {
+        node {
+          html
+          frontmatter {
+            title
+            date(formatString: "YYYY.MM.DD.")
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
+
 const MarkdownBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -91,46 +131,6 @@ const MarkdownBlock = styled.div`
   code[class*="language-"],
   pre[class*="language-"] {
     tab-size: 2;
-  }
-`;
-
-const PostTemplate: React.FC = React.memo(
-  ({
-    data: {
-      allMarkdownRemark: { edges },
-    },
-  }: any) => {
-    const {
-      node: { html, frontmatter },
-    } = edges[0];
-    return (
-      <Layout pageTitle="post">
-        <MarkdownBlock
-          dangerouslySetInnerHTML={{ __html: html }}
-        ></MarkdownBlock>
-      </Layout>
-    );
-  }
-);
-
-PostTemplate.displayName = "PostTemplate";
-
-export const queryMarkdownDataBySlug = graphql`
-  query queryMarkdownDataBySlug($slug: String) {
-    allMarkdownRemark(filter: { fields: { slug: { eq: $slug } } }) {
-      edges {
-        node {
-          html
-          frontmatter {
-            title
-            date(formatString: "YYYY.MM.DD.")
-          }
-          fields {
-            slug
-          }
-        }
-      }
-    }
   }
 `;
 

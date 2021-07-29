@@ -33,22 +33,7 @@ const Layout = ({ pageTitle, children }: LayoutType) => {
           <UnderLine />
         </SiteTitle>
       </ImageBlock>
-      <nav>
-        <NavLinks>
-          <li>
-            <Link to="/">Javascript</Link>
-          </li>
-          <li>
-            <Link to="/">React</Link>
-          </li>
-          <li>
-            <Link to="/">Oracle</Link>
-          </li>
-          <li>
-            <Link to="/">Git</Link>
-          </li>
-        </NavLinks>
-      </nav>
+
       {children}
     </Container>
   );
@@ -58,28 +43,6 @@ const Container = styled.main`
   margin: auto;
   max-width: 600px;
   font-family: sans-serif;
-`;
-const NavLinks = styled.ul`
-  display: flex;
-  list-style: none;
-  padding-left: 0;
-  padding: 0.8rem 1rem;
-  li {
-    margin-right: 1rem;
-    border-radius: 0.3rem;
-    padding: 0.2rem 1rem;
-    background-color: aliceblue;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    &:hover {
-      background-color: #e2f1fd;
-      transition-duration: 0.5s;
-    }
-    a {
-      color: #696969;
-      text-decoration: none;
-    }
-  }
 `;
 
 const SiteTitle = styled.h1`
