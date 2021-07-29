@@ -12,9 +12,7 @@ const Article = styled.article`
 `;
 
 const BlogPage = (result: Result) => {
-  console.log(result);
   const { edges } = result.data.allMarkdownRemark;
-  console.log(edges);
   return (
     <Layout pageTitle="Blog">
       <ul>

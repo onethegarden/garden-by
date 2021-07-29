@@ -4,13 +4,9 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 
 const Container = styled.main`
   margin: auto;
-  max-width: 700px;
+  max-width: 600px;
   font-family: sans-serif;
 `;
-const Heading = styled.title`
-  color: rebeccapurple;
-`;
-
 const NavLinks = styled.ul`
   display: flex;
   list-style: none;
@@ -23,15 +19,35 @@ const NavLinks = styled.ul`
   }
 `;
 const SiteTitle = styled.p`
-  font-size: 3rem;
+  a {
+    color: #d50000;
+    text-decoration: none;
+  }
+  font-size: 2.4rem;
   color: gray;
   font-weight: 700;
+  margin-left: 2rem;
+`;
+
+const ImageBlock = styled.div`
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+  }
+  h1 {
+    margin-left: 50px;
+  }
 `;
 
 type LayoutType = {
   pageTitle: string;
   children: any;
 };
+
 const Layout = ({ pageTitle, children }: LayoutType) => {
   const data = useStaticQuery(graphql`
     query {
@@ -44,11 +60,15 @@ const Layout = ({ pageTitle, children }: LayoutType) => {
   `);
   return (
     <Container>
-      <Heading>{pageTitle}</Heading>
       <title>
         {pageTitle} | {data.site.siteMetadata.title}
       </title>
-      <SiteTitle>{data.site.siteMetadata.title}</SiteTitle>
+      <ImageBlock>
+        <img src="https://avatars1.githubusercontent.com/u/51187540?s=460&v=4" />
+        <SiteTitle>
+          <Link to="/about">{data.site.siteMetadata.title}</Link>
+        </SiteTitle>
+      </ImageBlock>
       <nav>
         <NavLinks>
           <li>
@@ -62,7 +82,6 @@ const Layout = ({ pageTitle, children }: LayoutType) => {
           </li>
         </NavLinks>
       </nav>
-      <h1>{pageTitle}</h1>
       {children}
     </Container>
   );
