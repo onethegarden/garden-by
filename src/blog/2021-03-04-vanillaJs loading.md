@@ -1,33 +1,26 @@
 ---
 layout: post
 title: vanillaJs loading
+categories: ["javascript"]
+thumbnail: "../images/javascript.jpg"
 ---
 
-
-
-## vanilla.js loading 화면 구현 ##
-
-
-
+## vanilla.js loading 화면 구현
 
 - 프로그래머스 과제를 진행하면서 구현해 본 로딩에 대한 내용을 정리하려고 한다.
 - [문제](https://programmers.co.kr/skill_check_assignments/4)
 
-
-
 ### 🌈 문제
 
->필수 데이터를 불러오는 중일 때, 현재 데이터를 불러오는 중임을 유저에게 알리는 UI를 추가해야 합니다. 
-
-
+> 필수 데이터를 불러오는 중일 때, 현재 데이터를 불러오는 중임을 유저에게 알리는 UI를 추가해야 합니다.
 
 ### 1. 로딩 컴포넌트
 
 ```javascript
 export default class Loading {
   constructor({ $target, data }) {
-    this.$loadingArea = document.createElement('div');
-    this.$loadingArea.className = 'loading';
+    this.$loadingArea = document.createElement("div");
+    this.$loadingArea.className = "loading";
 
     $target.appendChild(this.$loadingArea);
     this.data = data;
@@ -39,7 +32,7 @@ export default class Loading {
   }
 
   render() {
-    const loading = document.querySelector('.loading');
+    const loading = document.querySelector(".loading");
     if (this.data.isLoading) {
       loading.innerHTML = `
       <div class="loadingDiv">
@@ -47,70 +40,62 @@ export default class Loading {
       </div>
       `;
     } else {
-      loading.innerHTML = '';
+      loading.innerHTML = "";
     }
   }
 }
-
 ```
-
-
-
-
 
 ### 2. 로딩 컴포넌트 호출
 
 ```javascript
 this.searchInput = new SearchInput({
-      $target,
-      onSearch: async (keyword) => {
-        this.loading.setState({ isLoading: true });
-        try {
-          const response = await api.fetchCats(keyword);
-          if (!response.ok) {
-            if (response.data.length == 0) {
-              this.setState('nothing');
-            } else {
-              setLocalStorage(storageKey.LAST_SEARCH, response.data);
-              this.setState(response.data);
-            }
-          }
-        } catch (e) {
-          console.log(e);
+  $target,
+  onSearch: async (keyword) => {
+    this.loading.setState({ isLoading: true });
+    try {
+      const response = await api.fetchCats(keyword);
+      if (!response.ok) {
+        if (response.data.length == 0) {
+          this.setState("nothing");
+        } else {
+          setLocalStorage(storageKey.LAST_SEARCH, response.data);
+          this.setState(response.data);
         }
-        this.loading.setState({ isLoading: false });
-      },
-      onRandom: async () => {
-        this.loading.setState({ isLoading: true });
-        try {
-          const response = await api.randomCat();
-          if (!response.ok) {
-            setLocalStorage(storageKey.LAST_SEARCH, response.data);
-            this.setState(response.data);
-          }
-        } catch (e) {
-          console.log(e);
-        }
-        this.loading.setState({ isLoading: false });
-      },
-    });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    this.loading.setState({ isLoading: false });
+  },
+  onRandom: async () => {
+    this.loading.setState({ isLoading: true });
+    try {
+      const response = await api.randomCat();
+      if (!response.ok) {
+        setLocalStorage(storageKey.LAST_SEARCH, response.data);
+        this.setState(response.data);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    this.loading.setState({ isLoading: false });
+  },
+});
 
 this.loading = new Loading({
-      $target,
-      data: {
-        isLoading: true,
-      },
-    });
+  $target,
+  data: {
+    isLoading: true,
+  },
+});
 ```
 
-- 파라미터로 ```isLoading```에 대한 상태를 넘겨 주고 그 상태에 따라 렌더링 하도록 하였다.
+- 파라미터로 `isLoading`에 대한 상태를 넘겨 주고 그 상태에 따라 렌더링 하도록 하였다.
 
-
-
-###  style.css 
+### style.css
 
 ```css
-
 .loading {
   height: 100%;
   width: 100%;
@@ -133,9 +118,3 @@ this.loading = new Loading({
   border-radius: 5em;
 }
 ```
-
-
-
-
-
-

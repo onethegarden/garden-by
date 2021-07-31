@@ -8,12 +8,19 @@ module.exports = {
     "gatsby-plugin-typescript",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
+    "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: `blog`,
         path: `${__dirname}/src/blog`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/src/images`,
       },
     },
     "gatsby-plugin-mdx",
@@ -27,6 +34,10 @@ module.exports = {
           },
         ],
       },
+    },
+    {
+      resolve: "gatsby-remark-copy-linked-files",
+      options: {},
     },
   ],
 };

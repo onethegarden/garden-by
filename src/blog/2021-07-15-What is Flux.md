@@ -1,13 +1,12 @@
 ---
 layout: post
 title: What is Flux
+categories: ["Flux", "wiki"]
 ---
-
-
 
 # What is Flux?
 
->내가 이해하기 위해 작성하는 Flux란 무엇인가
+> 내가 이해하기 위해 작성하는 Flux란 무엇인가
 
 <br/><br/><br/><br/><br/><br/>
 
@@ -16,8 +15,8 @@ title: What is Flux
 #### 유명하다는 facebook의 알림 버그
 
 - Facebook에 로그인하면 메시지 아이콘 위에 알림이 표시된다.
--  그러나 메시지 아이콘을 클릭하면 새 메시지가 표시되지 않고 알림이 사라진다. 
-- 그런 다음 몇 분 후에 사이트와 몇 번의 상호 작용이 끝나면 알림이 다시 표시된다. 메시지 아이콘을 다시 클릭하면… 여전히 새 메시지가 없다. 
+- 그러나 메시지 아이콘을 클릭하면 새 메시지가 표시되지 않고 알림이 사라진다.
+- 그런 다음 몇 분 후에 사이트와 몇 번의 상호 작용이 끝나면 알림이 다시 표시된다. 메시지 아이콘을 다시 클릭하면… 여전히 새 메시지가 없다.
 
 <br/>
 
@@ -29,7 +28,7 @@ title: What is Flux
 
 ![image](https://user-images.githubusercontent.com/51187540/125787387-0fdf5cd3-59bf-46ea-85de-1b19efe66207.png)
 
-이해를 돕기 위한 이미지이다. 
+이해를 돕기 위한 이미지이다.
 
 데이터를 주고 받는 과정이 연쇄적으로 발생하게 된다면, 또 비동기적으로 발생하게 되고, 하나의 데이터 요청이 또 다른 요청을 필요로 하게 된다면
 
@@ -39,7 +38,7 @@ title: What is Flux
 
 ### 2. 그래서 단방향 데이터 흐름!
 
- 📝페이스북은 이 문제의 이유를 **데이터 흐름**의 문제라고 보았다.
+📝페이스북은 이 문제의 이유를 **데이터 흐름**의 문제라고 보았다.
 
 이미 구조는 복잡해져있고, 많은 Model과 View에서 이를 처리하다 보니 데이터 흐름의 싸이클이 꼬여버리기도 한다.
 
@@ -48,8 +47,6 @@ title: What is Flux
 <br/><br/>
 
 ![image](https://user-images.githubusercontent.com/51187540/125788259-8dd056cf-6592-44c7-b4aa-a57d0608032c.png)
-
-
 
 이러한 구조가 바로 Flux이다!
 
@@ -78,15 +75,11 @@ title: What is Flux
 
 ### 4. 그래서 리덕스를 쓰는 방식?
 
-
-
-
-
-참고 : 
+참고 :
 
 카툰안내서 - 한국어 : https://bestalign.github.io/translation/cartoon-guide-to-flux/
 
-​                     - 영어 : https://code-cartoons.com/a-cartoon-guide-to-flux-6157355ab207
+​ - 영어 : https://code-cartoons.com/a-cartoon-guide-to-flux-6157355ab207
 
 flux 공식문서 - https://facebook.github.io/flux/docs/in-depth-overview/
 

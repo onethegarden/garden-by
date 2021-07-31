@@ -1,14 +1,11 @@
 ---
 layout: post
 title: javascript this
+categories: ["javascript"]
+thumbnail: "../images/javascript.jpg"
 ---
 
-
-
-## Javascript this! ##
-
-
-
+## Javascript this!
 
 - javascript 의 this에 대해 정리하고자 한다
 
@@ -30,37 +27,35 @@ title: javascript this
   console.log(this); //global
   ```
 
-  
-
 - 객체의 메서드로서의 this
 
 ```javascript
-    var value = 100;
-    var myObj = {
-      value: 1,
-      func1: function () {
-        //myobj가 this로 바인딩 - 객체의 메서드를 호출하는 것
-        console.log(`func1 this.value: ${this.value}`);
+var value = 100;
+var myObj = {
+  value: 1,
+  func1: function () {
+    //myobj가 this로 바인딩 - 객체의 메서드를 호출하는 것
+    console.log(`func1 this.value: ${this.value}`);
 
-        //함수 호출 시 함수는 전역에 바인딩 된다.★
-        function innerRegular() {
-          console.log(`inner regular this.value : ${this.value}`);
-        }
+    //함수 호출 시 함수는 전역에 바인딩 된다.★
+    function innerRegular() {
+      console.log(`inner regular this.value : ${this.value}`);
+    }
 
-        innerRegular();
+    innerRegular();
 
-        const innerFunctional = () => {
-          console.log(`inner functional this.value : ${this.value}`);
-        };
-
-        innerFunctional();
-      },
+    const innerFunctional = () => {
+      console.log(`inner functional this.value : ${this.value}`);
     };
 
-    myObj.func1();
-    // func1 this.value: 1
-    // inner regular this.value : 100
-    // inner functional this.value : 1
+    innerFunctional();
+  },
+};
+
+myObj.func1();
+// func1 this.value: 1
+// inner regular this.value : 100
+// inner functional this.value : 1
 ```
 
 - ★표와 같이 서브루틴 내에세 바깥의 this를 사용하려고 할 때는 arrow function을 사용하면 해결 할 수 있다.

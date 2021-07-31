@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/layout";
+import Img, { FluidObject, GatsbyImageProps } from "gatsby-image";
 
 const IndexPage = (result: Result) => {
   const { edges } = result.data.allMarkdownRemark;
@@ -32,6 +33,15 @@ const IndexPage = (result: Result) => {
           return (
             <Article key={slug}>
               <Link to={slug}>
+                {edge.node.frontmatter.thumbnail?.childImageSharp && (
+                  <Img
+                    fluid={
+                      edge.node.frontmatter.thumbnail.childImageSharp.fluid
+                    }
+                    alt="Post Item Image"
+                  />
+                )}
+
                 <h2>{title}</h2>
 
                 <p>last updated: {date ? date : "-"}</p>
@@ -46,7 +56,7 @@ const IndexPage = (result: Result) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
+    allMarkdownRemark(sort: { fields: frontmatter___date }) {
       edges {
         node {
           fields {
@@ -54,6 +64,19 @@ export const query = graphql`
           }
           frontmatter {
             title
+            categories
+            thumbnail {
+              childImageSharp {
+                fluid(
+                  maxWidth: 768
+                  maxHeight: 200
+                  fit: INSIDE
+                  quality: 100
+                ) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
           parent {
             ... on File {
@@ -79,25 +102,26 @@ export interface AllMarkdownRemark {
 }
 
 export interface Edge {
-  node: Node;
-}
-
-export interface Node {
-  fields: Fields;
-  frontmatter: Frontmatter;
-  parent: Parent;
-}
-
-export interface Fields {
-  slug: string;
-}
-
-export interface Frontmatter {
-  title: string;
-}
-
-export interface Parent {
-  modifiedTime: string;
+  node: {
+    fields: {
+      slug: string;
+    };
+    parent: {
+      modifiedTime: string;
+    };
+    id: string;
+    frontmatter: {
+      title: string;
+      summary: string;
+      date: string;
+      categories: string[];
+      thumbnail: {
+        childImageSharp: {
+          fluid: FluidObject | FluidObject[];
+        };
+      };
+    };
+  };
 }
 
 const PostUl = styled.ul`

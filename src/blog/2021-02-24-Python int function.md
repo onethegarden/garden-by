@@ -1,6 +1,8 @@
 ---
 layout: post
 title: python int function
+categories: ["Python", "algorithm"]
+thumbnail: "../images/python.png"
 ---
 
 ## python int함수 n진법

@@ -1,17 +1,15 @@
 ---
 layout: post
 title: React LIfecycle of Component
+categories: ["React"]
+thumbnail: "../images/react.png"
 ---
-
-
 
 ## React LIfecycle of Component
 
->리액트 컴포넌트의 라이프 사이클에 대한 글
+> 리액트 컴포넌트의 라이프 사이클에 대한 글
 >
->현재는 클래스형을 많이 사용하지는 않는다고 하지만 그래도 알고 있어야 될 것 같아 정리한다.
-
-
+> 현재는 클래스형을 많이 사용하지는 않는다고 하지만 그래도 알고 있어야 될 것 같아 정리한다.
 
 ##### 먼저 클래스형과 함수형의 차이부터 알아보자!
 
@@ -44,18 +42,14 @@ function App() {
 export default App;
 ```
 
+- 차이
 
-
-- 차이 
-
-| 클래스형                                                     | 함수형                                                       |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| state, lifeCycle 관련 기능 사용 가능                         | state, lifeCycle 관련기능 사용 못했다.(hook으로 해결)        |
-| 메모리를 함수형보다는 더 씀                                  | 메모리를 클래스형보다 덜 씀                                  |
-| 임의 메서드 정의 가능                                        | 컴포넌트 선언이 편함                                         |
-| Stateful 컴포넌트 : 로직과 상태를 컴포넌트 내에서 구현, 상대적으로 복잡한 UI | Stateless 컴포넌트 :  state를 사용하지 않고 단순하게 데이터(props)를 받아서 UI에 뿌려줌 |
-
-
+| 클래스형                                                                     | 함수형                                                                                 |
+| ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| state, lifeCycle 관련 기능 사용 가능                                         | state, lifeCycle 관련기능 사용 못했다.(hook으로 해결)                                  |
+| 메모리를 함수형보다는 더 씀                                                  | 메모리를 클래스형보다 덜 씀                                                            |
+| 임의 메서드 정의 가능                                                        | 컴포넌트 선언이 편함                                                                   |
+| Stateful 컴포넌트 : 로직과 상태를 컴포넌트 내에서 구현, 상대적으로 복잡한 UI | Stateless 컴포넌트 : state를 사용하지 않고 단순하게 데이터(props)를 받아서 UI에 뿌려줌 |
 
 - 클래스형 컴포넌트 예제
 
@@ -92,11 +86,7 @@ class Counter extends Component {
 export default Counter;
 ```
 
-
-
-
-
-### 리액트 컴포넌트 라이프사이클 
+### 리액트 컴포넌트 라이프사이클
 
 - 라이프사이클은 크게 세 부분으로 나뉘어진다. (마운트, 업데이트 , 언마운트)
 
@@ -108,19 +98,9 @@ export default Counter;
   - this.forceUpdate로 강제로 렌더링을 트리거 할 때
 - 언마운트
 
-
-
 ![image](https://i.imgur.com/cNfpEph.png)
 
 출처: http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
-
-
-
-
-
-
-
-
 
 #### 1. 마운트
 
@@ -146,7 +126,7 @@ constructor(props){
 }
 
 
-/* 
+/*
 * 	2. getDerivedStateFromProps : props로 받아온 것을 state에 넣어주고 싶을 때 사용
 * 	다른 생명주기 메서드와는 달리 static을 필요로 하고, 이 안에서는 this를 조회 할 수 없음
 * 	컴포넌트가 처음 렌더링 되기 전에 호출되고, 그 이후 리렌더링 되기 전에 매번 실행 됨.
@@ -165,7 +145,7 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
 
 //3. render : 컴포넌트를 렌더링 하는 메서드
- render() { 
+ render() {
     const name = 'react';
     return <div className="react">{name}</div>
   }
@@ -179,14 +159,6 @@ static getDerivedStateFromProps(nextProps, prevState) {
 *	DOM의 속성을 읽거나 직접 변경
 */
 ```
-
-
-
-
-
-
-
-
 
 #### 2. 업데이트
 
@@ -234,7 +206,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
 
 /*
-*	5. componentDidUpdate : 리렌더링이 마치고, 화면에 우리가 원하는 변화가 
+*	5. componentDidUpdate : 리렌더링이 마치고, 화면에 우리가 원하는 변화가
 *	모두 반영되고 난 뒤 호출되는 메서드
 *	세 번째 파라미터로 4번의 getSnapshotBeforeUpdate에서 반환한 값을 조회할 수 있다.
 */
@@ -249,10 +221,6 @@ componentDidUpdate(prevProps, prevState, snapshot) {
 
 - https://codesandbox.io/s/getsnapshotbeforeupdate-yeje-vpmle?fontsize=14&file=/src/ScrollBox.js:1293-1296 - 사용사례 참고 (스크롤 위치 유지하기)
 
-
-
-
-
 #### 3. 언마운트
 
 ```react
@@ -263,48 +231,26 @@ componentDidUpdate(prevProps, prevState, snapshot) {
   }
 ```
 
+📕리액트 문서의 Hook Motivation 📕
 
-
-
-
-
-
- 📕리액트 문서의 Hook Motivation 📕
-
-
-
->### Class은 사람과 기계를 혼동시킵니다.
+> ### Class은 사람과 기계를 혼동시킵니다.
 >
->Class가 코드의 재사용성과 코드 구성을 좀 더 어렵게 만들 뿐만 아니라, React를 배우는데 큰 진입장벽이라는 것을 알게 되었습니다. Javascript에서 어떻게 `this`가 작동하는지 알아야만 했고, 대부분의 다른 언어와는 다르게 작동합니다. 이벤트 핸들러가 등록되는 방법을 기억해야만 합니다. 불안정한 [문법 제안들](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/)이 없다면, 코드는 매우 장황해집니다. 사람들은 props, state, 그리고 top-down 데이터 흐름을 완벽하게 이해할 수 있지만, 여전히 Class는 쉽지 않습니다. React 안에서의 함수와 Class 컴포넌트들을 구별하고 각 요소를 언제 사용하는지는 숙련된 React 개발자 사이에서도 의견이 일치하지 않습니다.
+> Class가 코드의 재사용성과 코드 구성을 좀 더 어렵게 만들 뿐만 아니라, React를 배우는데 큰 진입장벽이라는 것을 알게 되었습니다. Javascript에서 어떻게 `this`가 작동하는지 알아야만 했고, 대부분의 다른 언어와는 다르게 작동합니다. 이벤트 핸들러가 등록되는 방법을 기억해야만 합니다. 불안정한 [문법 제안들](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/)이 없다면, 코드는 매우 장황해집니다. 사람들은 props, state, 그리고 top-down 데이터 흐름을 완벽하게 이해할 수 있지만, 여전히 Class는 쉽지 않습니다. React 안에서의 함수와 Class 컴포넌트들을 구별하고 각 요소를 언제 사용하는지는 숙련된 React 개발자 사이에서도 의견이 일치하지 않습니다.
 
->이러한 문제를 해결하기 위해, **Hook은 Class없이 React 기능들을 사용하는 방법을 알려줍니다.** 개념적으로 React 컴포넌트는 항상 함수에 더 가깝습니다. Hook은 React의 정신을 희생하지 않고 함수를 받아들입니다. Hook은 명령형 코드로 해결책을 찾을 수 있게 해주며 복잡한 함수형 또는 반응형 프로그래밍 기술을 배우도록 요구하지 않습니다.
-
-
-
-
+> 이러한 문제를 해결하기 위해, **Hook은 Class없이 React 기능들을 사용하는 방법을 알려줍니다.** 개념적으로 React 컴포넌트는 항상 함수에 더 가깝습니다. Hook은 React의 정신을 희생하지 않고 함수를 받아들입니다. Hook은 명령형 코드로 해결책을 찾을 수 있게 해주며 복잡한 함수형 또는 반응형 프로그래밍 기술을 배우도록 요구하지 않습니다.
 
 ### 그래서 나온게 Hook!
 
-- ```this.state``` -> ```useState ``` 
-- ```componentDidMount```, ```componentDidUpdate```, ```componentWillUnmount``` -> ```useEffect```
-
-
-
-
-
-
+- `this.state` -> `useState `
+- `componentDidMount`, `componentDidUpdate`, `componentWillUnmount` -> `useEffect`
 
 ### 💫useEffect!!
 
->1. 컴포넌트가 마운트 됐을 때 (처음 나타났을 때)
+> 1.  컴포넌트가 마운트 됐을 때 (처음 나타났을 때)
 >
->2. 언마운트 됐을 때 (사라질 때)
+> 2.  언마운트 됐을 때 (사라질 때)
 >
->3. 업데이트 될 때 (특정 props가 바뀔 때) **특정 작업을 처리하는 Hook**
-
-
-
-
+> 3.  업데이트 될 때 (특정 props가 바뀔 때) **특정 작업을 처리하는 Hook**
 
 1. 코드를 먼저 보자
 
@@ -317,35 +263,24 @@ componentDidUpdate(prevProps, prevState, snapshot) {
   }, []);
 ```
 
-- ```useEffect(함수, 의존배열(deps))``` : ```useEffect```의 첫 번째 파라미터에는 함수, 두 번째 파라미터에는 의존값이 들어있는 배열(deps) 를 넣는다. 
+- `useEffect(함수, 의존배열(deps))` : `useEffect`의 첫 번째 파라미터에는 함수, 두 번째 파라미터에는 의존값이 들어있는 배열(deps) 를 넣는다.
 - deps 의존배열
-  - 빈 값```[]```이면 컴포넌트가 처음 나타날때만 ```useEffect```에 등록한 함수가 호출된다. 
-  - 설정해주지 않으면 ```useEffect(()=> {console.log('리렌더링')})```컴포넌트가 리렌더링 될 때만 함수가 호출된다.
 
-- ```cleanup```함수 : ```useEffect```에서는 반환하는 함수를 cleanup 함수라고 부른다. ```useEffect```에 대한 뒷정리를 해주고, deps가 빈 값이면 컴포넌트가 사라질 때 ```cleanup```함수가 호출
+  - 빈 값`[]`이면 컴포넌트가 처음 나타날때만 `useEffect`에 등록한 함수가 호출된다.
+  - 설정해주지 않으면 `useEffect(()=> {console.log('리렌더링')})`컴포넌트가 리렌더링 될 때만 함수가 호출된다.
 
-
+- `cleanup`함수 : `useEffect`에서는 반환하는 함수를 cleanup 함수라고 부른다. `useEffect`에 대한 뒷정리를 해주고, deps가 빈 값이면 컴포넌트가 사라질 때 `cleanup`함수가 호출
 
 - 콘솔 화면
 
 ![image](https://user-images.githubusercontent.com/51187540/112601602-fe046f80-8e55-11eb-9e43-c9fb515909a1.png)
 
-컴포넌트 세 개가 마운트 될 때 ```컴포넌트가 화면에 나타남```이 출력되고 
+컴포넌트 세 개가 마운트 될 때 `컴포넌트가 화면에 나타남`이 출력되고
 
-```삭제 ``` 버튼을 눌렀을 때 ```컴포넌트가 화면에서 사라짐```이 출력된다.
+`삭제 ` 버튼을 눌렀을 때 `컴포넌트가 화면에서 사라짐`이 출력된다.
 
+- 출처
 
-
-
-
-
-
-
-
-- 출처 
-
-  - 누구든지 하는 리액트 -  https://velopert.com/3631
+  - 누구든지 하는 리액트 - https://velopert.com/3631
   - 모던리액트 - https://react.vlpt.us/basic/25-lifecycle.html
   - https://ko.reactjs.org/docs/hooks-overview.html
-
-  
