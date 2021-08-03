@@ -3,9 +3,28 @@ import styled from "styled-components";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/layout";
 import Img, { FluidObject, GatsbyImageProps } from "gatsby-image";
+import queryString, { ParsedQuery } from "query-string";
 
-const IndexPage = (result: Result) => {
-  const { edges } = result.data.allMarkdownRemark;
+interface IndexPageProps {
+  location: {
+    search: string;
+  };
+  data: Data;
+}
+
+const IndexPage = ({
+  location: { search },
+  data: {
+    allMarkdownRemark: { edges },
+  },
+}: IndexPageProps) => {
+  const parsed: ParsedQuery<string> = queryString.parse(search);
+  const selectedCategory: string =
+    typeof parsed.category !== "string" || !parsed.category
+      ? "All"
+      : parsed.category;
+  console.log(selectedCategory);
+
   return (
     <Layout pageTitle="Blog">
       <nav>
