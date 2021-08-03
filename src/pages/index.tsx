@@ -4,6 +4,7 @@ import { graphql, Link } from "gatsby";
 import Layout from "../components/layout";
 import Img, { FluidObject, GatsbyImageProps } from "gatsby-image";
 import queryString, { ParsedQuery } from "query-string";
+import CategoryList from "../components/Main/CategoryList";
 
 interface IndexPageProps {
   location: {
@@ -11,6 +12,12 @@ interface IndexPageProps {
   };
   data: Data;
 }
+
+const CATEGORY_LIST = {
+  All: 5,
+  Web: 3,
+  Mobile: 2,
+};
 
 const IndexPage = ({
   location: { search },
@@ -27,28 +34,12 @@ const IndexPage = ({
 
   return (
     <Layout pageTitle="Blog">
-      <nav>
-        <NavLinks>
-          <li>
-            <Link to="/">Javascript</Link>
-          </li>
-          <li>
-            <Link to="/">React</Link>
-          </li>
-          <li>
-            <Link to="/">Oracle</Link>
-          </li>
-          <li>
-            <Link to="/">Git</Link>
-          </li>
-        </NavLinks>
-      </nav>
+      <CategoryList selectedCategory="Web" categoryList={CATEGORY_LIST} />
       <PostUl>
         {edges.map((edge: Edge) => {
           const { slug } = edge.node.fields;
           const { title } = edge.node.frontmatter;
           const { modifiedTime: date } = edge.node.parent;
-          console.log("tests");
           return (
             <Article key={slug}>
               <Link to={slug}>
@@ -164,29 +155,6 @@ const Article = styled.article`
   &:hover {
     transform: scale(1.1);
     transition-duration: 0.4s;
-  }
-`;
-
-const NavLinks = styled.ul`
-  display: flex;
-  list-style: none;
-  padding-left: 0;
-  padding: 0.8rem 1rem;
-  li {
-    margin-right: 1rem;
-    border-radius: 0.3rem;
-    padding: 0.2rem 1rem;
-    background-color: aliceblue;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    &:hover {
-      background-color: #e2f1fd;
-      transition-duration: 0.5s;
-    }
-    a {
-      color: #696969;
-      text-decoration: none;
-    }
   }
 `;
 
