@@ -1,11 +1,8 @@
 import React from "react";
 import Layout from "../components/layout";
 import styled from "styled-components";
+import "gatsby-remark-vscode/styles.css";
 import { graphql } from "gatsby";
-import "@deckdeckgo/highlight-code";
-import { defineCustomElements as deckDeckGoElement } from "@deckdeckgo/highlight-code/dist/loader";
-
-deckDeckGoElement();
 
 const PostTemplate: React.FC = React.memo(
   ({
@@ -114,7 +111,9 @@ const MarkdownBlock = styled.div`
     color: #4263eb;
     text-decoration: underline;
   }
-
+  pre {
+    margin-top: 1rem;
+  }
   pre[class*="language-"] {
     margin: 30px 0;
     padding: 15px;

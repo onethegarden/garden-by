@@ -23,14 +23,25 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    "gatsby-plugin-mdx",
-    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-highlight-code`,
+            resolve: `gatsby-remark-vscode`,
+            options: {
+              plugins: [
+                {
+                  resolve: `gatsby-remark-vscode`,
+                  options: {
+                    theme: {
+                      default: "Solarized Light",
+                      dark: "Monokai Dimmed",
+                    },
+                  },
+                },
+              ],
+            },
           },
         ],
       },

@@ -41,7 +41,7 @@ const Layout = ({ pageTitle, children }: LayoutType) => {
 const Container = styled.main`
   margin: auto;
   padding: 2rem;
-  max-width: 600px;
+  max-width: 800px;
   min-width: 500px;
   font-family: sans-serif;
   padding: 1.2rem;
