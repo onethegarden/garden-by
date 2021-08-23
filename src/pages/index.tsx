@@ -14,9 +14,10 @@ interface IndexPageProps {
 }
 
 const CATEGORY_LIST = {
-  All: 5,
-  Web: 3,
-  Mobile: 2,
+  Javascript: 5,
+  React: 3,
+  Git: 3,
+  Oracle: 2,
 };
 
 const IndexPage = ({
