@@ -15,26 +15,45 @@ const Layout = ({ pageTitle, children }: LayoutType) => {
       site {
         siteMetadata {
           title
+          siteUrl
+          author
+          description
         }
       }
     }
   `);
+  const { title, siteUrl, author, description } = data.site.siteMetadata;
+  const githubProfile =
+    "https://avatars1.githubusercontent.com/u/51187540?s=460&v=4";
   return (
     <Container>
       <Helmet>
-        <title>{pageTitle}</title>
+        <title>
+          {pageTitle}|{title}
+        </title>
 
-        <meta name="description" content="한정원 블로그 입니다" />
+        <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={githubProfile} />
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:site_name" content={title} />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={githubProfile} />
+        <meta name="twitter:site" content={author} />
+        <meta name="twitter:creator" content={author} />
       </Helmet>
       <GlobalStyle />
-      <title>
-        {pageTitle} | {data.site.siteMetadata.title}
-      </title>
       <ImageBlock>
         <Link to="/about">
-          <img src="https://avatars1.githubusercontent.com/u/51187540?s=460&v=4" />
+          <img src={githubProfile} />
         </Link>
         <SiteTitle>
           <Link to="/">{data.site.siteMetadata.title}</Link>
