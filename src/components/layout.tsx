@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import GlobalStyle from "../components/common/GlobalStyle";
 import { Link, useStaticQuery, graphql } from "gatsby";
@@ -20,6 +21,13 @@ const Layout = ({ pageTitle, children }: LayoutType) => {
   `);
   return (
     <Container>
+      <Helmet>
+        <title>{pageTitle}</title>
+
+        <meta name="description" content="한정원 블로그 입니다" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
+      </Helmet>
       <GlobalStyle />
       <title>
         {pageTitle} | {data.site.siteMetadata.title}
