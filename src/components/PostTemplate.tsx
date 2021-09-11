@@ -14,11 +14,13 @@ const PostTemplate: React.FC = React.memo(
       node: { html, frontmatter },
     } = edges[0];
     return (
-      <Layout pageTitle="post">
-        <MarkdownBlock
-          dangerouslySetInnerHTML={{ __html: html }}
-        ></MarkdownBlock>
-      </Layout>
+      <>
+        <Layout pageTitle="post">
+          <MarkdownBlock
+            dangerouslySetInnerHTML={{ __html: html }}
+          ></MarkdownBlock>
+        </Layout>
+      </>
     );
   }
 );
