@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { graphql, Link } from "gatsby";
+import { useCategory } from "../hooks/useCategory";
 import Layout from "../components/layout";
-import Img, { FluidObject, GatsbyImageProps } from "gatsby-image";
+import Img, { FluidObject } from "gatsby-image";
 import queryString, { ParsedQuery } from "query-string";
 import CategoryList from "../components/Main/CategoryList";
 
@@ -12,13 +13,6 @@ interface IndexPageProps {
   };
   data: Data;
 }
-
-const CATEGORY_LIST = {
-  Javascript: 5,
-  React: 3,
-  Git: 3,
-  Oracle: 2,
-};
 
 const IndexPage = ({
   location: { search },
@@ -31,11 +25,14 @@ const IndexPage = ({
     typeof parsed.category !== "string" || !parsed.category
       ? "All"
       : parsed.category;
-  console.log(selectedCategory);
+  const categoryList = useMemo(() => useCategory(edges), []);
 
   return (
     <Layout pageTitle="Blog">
-      <CategoryList selectedCategory="Web" categoryList={CATEGORY_LIST} />
+      <CategoryList
+        selectedCategory={selectedCategory}
+        categoryList={categoryList}
+      />
       <PostUl>
         {edges.map((edge: Edge) => {
           const { slug } = edge.node.fields;
@@ -52,9 +49,7 @@ const IndexPage = ({
                     alt="Post Item Image"
                   />
                 )}
-
                 <h2>{title}</h2>
-
                 <p>last updated: {date ? date : "-"}</p>
               </Link>
             </Article>

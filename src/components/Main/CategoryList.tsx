@@ -19,12 +19,6 @@ type GatsbyLinkProps = {
   to: string;
 } & CategoryItemProps;
 
-const CategoryItem = ({ active, to, ...props }: GatsbyLinkProps) => (
-  <Category active={active}>
-    <Link to={to} {...props} />
-  </Category>
-);
-
 const CategoryList: FunctionComponent<CategoryListProps> = function ({
   selectedCategory,
   categoryList,
@@ -32,13 +26,11 @@ const CategoryList: FunctionComponent<CategoryListProps> = function ({
   return (
     <CategoryListWrapper>
       {Object.entries(categoryList).map(([name, count]) => (
-        <CategoryItem
-          to={`/?category=${name}`}
-          active={name === selectedCategory}
-          key={name}
-        >
-          {name}({count})
-        </CategoryItem>
+        <Category active={name === selectedCategory}>
+          <Link to={`/?category=${name}`}>
+            {name}({count})
+          </Link>
+        </Category>
       ))}
     </CategoryListWrapper>
   );
@@ -46,16 +38,18 @@ const CategoryList: FunctionComponent<CategoryListProps> = function ({
 
 const CategoryListWrapper = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
   padding-left: 0;
   padding: 0.8rem 1rem;
 `;
 
 const Category = styled.li<CategoryItemProps>`
-  margin-right: 20px;
-  padding: 5px 0;
+  margin: 0.3rem;
+  margin-right: 2rem;
+  padding: 0.5rem 0;
   font-size: 18px;
-  font-weight: ${({ active }) => (active ? "800" : "400")};
+  font-weight: ${({ active }) => (active ? "600" : "400")};
   margin-right: 1rem;
   border-radius: 0.3rem;
   padding: 0.2rem 1rem;
