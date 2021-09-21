@@ -1,6 +1,5 @@
-import React, { FunctionComponent, ReactNode } from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
-import { graphql } from "gatsby";
 import { Link } from "gatsby";
 
 export interface CategoryListProps {
@@ -13,11 +12,6 @@ export interface CategoryListProps {
 type CategoryItemProps = {
   active: boolean;
 };
-type GatsbyLinkProps = {
-  children: ReactNode;
-  className?: string;
-  to: string;
-} & CategoryItemProps;
 
 const CategoryList: FunctionComponent<CategoryListProps> = function ({
   selectedCategory,
