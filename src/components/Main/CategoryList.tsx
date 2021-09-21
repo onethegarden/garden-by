@@ -19,60 +19,11 @@ type GatsbyLinkProps = {
   to: string;
 } & CategoryItemProps;
 
-const CategoryListWrapper = styled.ul`
-  display: flex;
-  list-style: none;
-  padding-left: 0;
-  padding: 0.8rem 1rem;
-`;
-
-const NavLinks = styled.ul`
-  display: flex;
-  list-style: none;
-  padding-left: 0;
-  padding: 0.8rem 1rem;
-  li {
-    margin-right: 1rem;
-    border-radius: 0.3rem;
-    padding: 0.2rem 1rem;
-    background-color: aliceblue;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    &:hover {
-      background-color: #e2f1fd;
-      transition-duration: 0.5s;
-    }
-    a {
-      color: #696969;
-      text-decoration: none;
-    }
-  }
-`;
-
-const CategoryItem = styled(({ active, to, ...props }: GatsbyLinkProps) => (
-  <li>
+const CategoryItem = ({ active, to, ...props }: GatsbyLinkProps) => (
+  <Category active={active}>
     <Link to={to} {...props} />
-  </li>
-))<CategoryItemProps>`
-  margin-right: 20px;
-  padding: 5px 0;
-  font-size: 18px;
-  font-weight: ${({ active }) => (active ? "800" : "400")};
-  margin-right: 1rem;
-  border-radius: 0.3rem;
-  padding: 0.2rem 1rem;
-  background-color: aliceblue;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  &:hover {
-    background-color: #e2f1fd;
-    transition-duration: 0.5s;
-  }
-  a {
-    color: #696969;
-    text-decoration: none;
-  }
-`;
+  </Category>
+);
 
 const CategoryList: FunctionComponent<CategoryListProps> = function ({
   selectedCategory,
@@ -92,5 +43,33 @@ const CategoryList: FunctionComponent<CategoryListProps> = function ({
     </CategoryListWrapper>
   );
 };
+
+const CategoryListWrapper = styled.ul`
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+  padding: 0.8rem 1rem;
+`;
+
+const Category = styled.li<CategoryItemProps>`
+  margin-right: 20px;
+  padding: 5px 0;
+  font-size: 18px;
+  font-weight: ${({ active }) => (active ? "800" : "400")};
+  margin-right: 1rem;
+  border-radius: 0.3rem;
+  padding: 0.2rem 1rem;
+  background-color: aliceblue;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  &:hover {
+    background-color: #e2f1fd;
+    transition-duration: 0.5s;
+  }
+  a {
+    color: #696969;
+    text-decoration: none;
+  }
+`;
 
 export default CategoryList;
