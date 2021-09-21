@@ -2,7 +2,6 @@ import * as React from "react";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/layout";
 import styled from "styled-components";
-import { MDXRenderer } from "gatsby-plugin-mdx";
 
 const Article = styled.article`
   a {
@@ -11,7 +10,26 @@ const Article = styled.article`
   }
 `;
 
-const BlogPage = (result: Result) => {
+export interface BlogProps {
+  data: {
+    allMarkdownRemark: {
+      edges: [
+        node: {
+          fields: {
+            slug: string;
+          };
+          frontmatter: {
+            date: string;
+            title: string;
+            categories: string[];
+          };
+        }
+      ];
+    };
+  };
+}
+
+const BlogPage = (result: BlogProps) => {
   const { edges } = result.data.allMarkdownRemark;
   return (
     <Layout pageTitle="Blog">
@@ -44,38 +62,12 @@ export const query = graphql`
           frontmatter {
             date(formatString: "MMMM D, YYYY")
             title
+            categories
           }
         }
       }
     }
   }
 `;
-export interface Result {
-  data: Data;
-}
-export interface Data {
-  allMarkdownRemark: AllMarkdownRemark;
-}
 
-export interface AllMarkdownRemark {
-  edges: Edge[];
-}
-
-export interface Edge {
-  node: Node;
-}
-
-export interface Node {
-  fields: Fields;
-  frontmatter: Frontmatter;
-}
-
-export interface Fields {
-  slug: string;
-}
-
-export interface Frontmatter {
-  date: string;
-  title: string;
-}
 export default BlogPage;
