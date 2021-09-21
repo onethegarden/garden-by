@@ -26,6 +26,16 @@ const IndexPage = ({
       ? "All"
       : parsed.category;
   const categoryList = useMemo(() => useCategory(edges), []);
+  const filteredPost = edges.filter(
+    ({
+      node: {
+        frontmatter: { categories },
+      },
+    }: {
+      node: { frontmatter: { categories: string[] } };
+    }) =>
+      selectedCategory !== "All" ? categories.includes(selectedCategory) : true
+  );
 
   return (
     <Layout pageTitle="Blog">
@@ -34,7 +44,7 @@ const IndexPage = ({
         categoryList={categoryList}
       />
       <PostUl>
-        {edges.map((edge: Edge) => {
+        {filteredPost.map((edge: Edge) => {
           const { slug } = edge.node.fields;
           const { title } = edge.node.frontmatter;
           const { modifiedTime: date } = edge.node.parent;
