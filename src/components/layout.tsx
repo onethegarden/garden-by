@@ -1,15 +1,16 @@
 import * as React from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import GlobalStyle from "../components/common/GlobalStyle";
 import { Link, useStaticQuery, graphql } from "gatsby";
+import GlobalStyle from "../components/common/GlobalStyle";
+import Header from "../components/common/Header";
 
 type LayoutType = {
   pageTitle: string;
   children: any;
 };
 
-const Layout = ({ pageTitle, children }: LayoutType) => {
+function Layout({ pageTitle, children }: LayoutType) {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -51,19 +52,11 @@ const Layout = ({ pageTitle, children }: LayoutType) => {
         <meta name="twitter:creator" content={author} />
       </Helmet>
       <GlobalStyle />
-      <ImageBlock>
-        <Link to="/about">
-          <img src={githubProfile} />
-        </Link>
-        <SiteTitle>
-          <Link to="/">{data.site.siteMetadata.title}</Link>
-          <UnderLine />
-        </SiteTitle>
-      </ImageBlock>
+      <Header githubProfile={githubProfile} title={title} />
       <Contents>{children}</Contents>
     </Container>
   );
-};
+}
 
 const Container = styled.main`
   margin: auto;
@@ -72,46 +65,6 @@ const Container = styled.main`
   min-width: 500px;
   font-family: sans-serif;
   padding: 1.2rem;
-`;
-
-const SiteTitle = styled.h1`
-  a {
-    color: #7d7d7d;
-    text-decoration: none;
-  }
-  font-size: 2.4rem;
-  color: gray;
-  font-weight: 700;
-  margin-left: 2rem;
-  padding: 0 2rem 1rem 2rem;
-  transition: 0.3s;
-  &:hover {
-    transform: translate(0, -10px);
-  }
-`;
-
-const UnderLine = styled.div`
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0),
-    #ccc,
-    rgba(255, 255, 255, 0)
-  );
-  height: 1px;
-  margin: 0.4em 0;
-`;
-
-const ImageBlock = styled.div`
-  margin: 5rem 0 1.2rem 0;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  img {
-    width: 6rem;
-    height: 6rem;
-    margin-left: 2rem;
-    border-radius: 3rem;
-  }
 `;
 
 const Contents = styled.section`
