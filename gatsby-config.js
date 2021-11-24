@@ -14,6 +14,19 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-plugin-react-helmet",
     {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-canonical-urls",
+      options: {
+        siteUrl: "<https://gardenby.gatsbyjs.io/>",
+        stripQueryString: true,
+      },
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: `blog`,
@@ -33,17 +46,10 @@ module.exports = {
           {
             resolve: `gatsby-remark-vscode`,
             options: {
-              plugins: [
-                {
-                  resolve: `gatsby-remark-vscode`,
-                  options: {
-                    theme: {
-                      default: "Solarized Light",
-                      dark: "Monokai Dimmed",
-                    },
-                  },
-                },
-              ],
+              theme: {
+                default: "Solarized Light",
+                dark: "Monokai Dimmed",
+              },
             },
           },
         ],
