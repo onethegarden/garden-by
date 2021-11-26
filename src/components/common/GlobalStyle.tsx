@@ -24,6 +24,16 @@ a:hover {
   cursor: pointer;
 }
 
+button{
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  border: 0 none;
+  background-color: transparent;
+}
+input{
+  outline: none;
+}
 
 `;
 
