@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
+import SearchIcon from "../../assets/search.svg";
 
 type HeaderProps = {
   githubProfile: string;
@@ -10,54 +11,69 @@ type HeaderProps = {
 function Header({ githubProfile, title }: HeaderProps) {
   return (
     <HeaderBlock>
-      <Link to="/about">
-        <img src={githubProfile} />
-      </Link>
-      <SiteTitle>
-        <Link to="/">{title}</Link>
-        <UnderLine />
-      </SiteTitle>
+      <HeaderContainer>
+        <HeaderWrapper>
+          <ImageLink to="/about">
+            <img src={githubProfile} />
+          </ImageLink>
+          <SiteTitle>
+            <Link to="/">{title}</Link>
+          </SiteTitle>
+        </HeaderWrapper>
+        <HeaderWrapper>
+          <button
+            onClick={() => {
+              console.log("button");
+            }}
+          >
+            <SearchIcon />
+          </button>
+        </HeaderWrapper>
+      </HeaderContainer>
     </HeaderBlock>
   );
 }
 
-const HeaderBlock = styled.div`
-  margin: 5rem 0 1.2rem 0;
+const HeaderBlock = styled.header`
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 3rem;
+  z-index: 300;
+  position: fixed;
+  transform: translateX(-50%);
+  backdrop-filter: blur(3px);
+  background-color: #ffffffd9;
+`;
+const HeaderContainer = styled.div`
+  position: relative;
+  height: 100%;
   display: flex;
-  justify-content: left;
-  align-items: center;
+  justify-content: space-between;
+  margin: 0 4rem;
+`;
+const ImageLink = styled(Link)`
   img {
-    width: 6rem;
-    height: 6rem;
-    margin-left: 2rem;
-    border-radius: 3rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 1.2rem;
+    margin-top: 0.3rem;
   }
 `;
-
-const SiteTitle = styled.h1`
+const HeaderWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+const SiteTitle = styled.div`
   a {
-    color: #7d7d7d;
+    color: #000;
     text-decoration: none;
   }
-  font-size: 2.4rem;
-  color: gray;
+  font-size: 1.2rem;
   font-weight: 700;
-  margin-left: 2rem;
-  padding: 0 2rem 1rem 2rem;
+  margin-left: 1rem;
   transition: 0.3s;
-  &:hover {
-    transform: translate(0, -10px);
-  }
-`;
-const UnderLine = styled.div`
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0),
-    #ccc,
-    rgba(255, 255, 255, 0)
-  );
-  height: 1px;
-  margin: 0.4em 0;
 `;
 
 export default Header;

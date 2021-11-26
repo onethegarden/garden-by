@@ -59,5 +59,13 @@ module.exports = {
       resolve: "gatsby-remark-copy-linked-files",
       options: {},
     },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/,
+        },
+      },
+    },
   ],
 };
