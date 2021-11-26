@@ -30,7 +30,7 @@ function Layout({ pageTitle, children }: LayoutType) {
     <Container>
       <Helmet>
         <title>
-          {pageTitle}|{title}
+          {pageTitle} | {title}
         </title>
 
         <meta name="description" content={description} />
@@ -59,12 +59,12 @@ function Layout({ pageTitle, children }: LayoutType) {
 }
 
 const Container = styled.main`
-  margin: auto;
   padding: 2rem;
-  max-width: 800px;
-  min-width: 500px;
   font-family: sans-serif;
   padding: 1.2rem;
+  margin: auto;
+  margin-top: 3rem;
+  max-width: 800px;
 `;
 
 const Contents = styled.section`
