@@ -3,19 +3,27 @@ import Layout from "../components/layout";
 import styled from "styled-components";
 import "gatsby-remark-vscode/styles.css";
 import { graphql } from "gatsby";
+import MarkDownStyle from "./common/MarkdownStyle";
+import { Data } from "../pages/index";
 
-const PostTemplate: React.FC = React.memo(
+type PostTempalteProps = {
+  data: Data;
+};
+
+const PostTemplate = React.memo(
   ({
     data: {
       allMarkdownRemark: { edges },
     },
-  }: any) => {
+  }: PostTempalteProps) => {
     const {
       node: { html, frontmatter },
     } = edges[0];
     return (
       <>
         <Layout pageTitle="post">
+          <PostTitle>{frontmatter.title}</PostTitle>
+          <MarkDownStyle />
           <MarkdownBlock
             dangerouslySetInnerHTML={{ __html: html }}
           ></MarkdownBlock>
@@ -44,7 +52,13 @@ export const queryMarkdownDataBySlug = graphql`
     }
   }
 `;
+const PostTitle = styled.h1`
+  font-weight: 800;
 
+  font-size: 2.5rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+`;
 const MarkdownBlock = styled.div`
   display: flex;
   flex-direction: column;
@@ -54,53 +68,55 @@ const MarkdownBlock = styled.div`
   line-height: 1.8;
   font-size: 16px;
   font-weight: 400;
-
   p {
     padding: 3px 0;
+    margin-bottom: 0.8125rem;
   }
 
   h1,
   h2,
   h3 {
     font-weight: 800;
-    margin-bottom: 30px;
-  }
-
-  * + h1,
-  * + h2,
-  * + h3 {
-    margin-top: 80px;
-  }
-
-  hr + h1,
-  hr + h2,
-  hr + h3 {
-    margin-top: 0;
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 2.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
   }
 
   h2 {
-    font-size: 25px;
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
   }
 
   h3 {
-    font-size: 20px;
+    font-size: 1rem;
+    margin: 0.2rem 0;
+  }
+  p {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    line-height: 1.6rem;
   }
 
   blockquote {
-    margin: 30px 0;
-    padding: 5px 15px;
+    margin: 2rem 0;
+    padding: 1rem 1.2rem;
     border-left: 4px solid #7b7b7b;
-    font-weight: 800;
+    font-weight: 700;
+    background-color: #f5f5f5;
   }
 
   ol,
   ul {
     margin-left: 20px;
-    padding: 30px 0;
   }
 
   hr {
@@ -112,25 +128,17 @@ const MarkdownBlock = styled.div`
     color: #4263eb;
     text-decoration: underline;
   }
-  pre {
-    margin-top: 1rem;
-  }
-  pre[class*="language-"] {
-    margin: 30px 0;
-    padding: 15px;
-    font-size: 15px;
 
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 3px;
-    }
-  }
   img {
     width: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
   }
-  code[class*="language-"],
-  pre[class*="language-"] {
-    tab-size: 2;
+  table,
+  th,
+  td {
+    border-collapse: collapse;
+    border: 1px solid black;
   }
 `;
 
