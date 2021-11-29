@@ -60,7 +60,6 @@ function Layout({ pageTitle, children }: LayoutType) {
 
 const Container = styled.main`
   padding: 2rem;
-  font-family: sans-serif;
   padding: 1.2rem;
   margin: auto;
   margin-top: 3rem;

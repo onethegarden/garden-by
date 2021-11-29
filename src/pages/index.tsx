@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
-import styled, { css } from "styled-components";
-import { graphql, Link } from "gatsby";
+import styled from "styled-components";
+import { graphql } from "gatsby";
 import { useCategory } from "../hooks/useCategory";
 import Layout from "../components/layout";
 import Img, { FluidObject } from "gatsby-image";
@@ -70,9 +70,7 @@ function IndexPage({
 
 export const query = graphql`
   query {
-    allMarkdownRemark(
-      sort: { fields: frontmatter___thumbnail___modifiedTime }
-    ) {
+    allMarkdownRemark(sort: { fields: fields___slug, order: DESC }) {
       edges {
         node {
           fields {
@@ -119,6 +117,7 @@ export interface Edge {
   node: Node;
 }
 export interface Node {
+  html: string;
   fields: {
     slug: string;
   };
