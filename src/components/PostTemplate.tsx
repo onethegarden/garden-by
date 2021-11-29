@@ -35,7 +35,6 @@ export const queryMarkdownDataBySlug = graphql`
           html
           frontmatter {
             title
-            date(formatString: "YYYY.MM.DD.")
           }
           fields {
             slug
