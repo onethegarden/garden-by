@@ -1,10 +1,8 @@
 ---
 layout: post
-categories: ["centOS"]
+categories: ['centOS']
 title: CentOS에서 Nginx로 REACT배포
 ---
-
-# CentOS에서 Nginx 로 REACT배포
 
 회사에서 테스트 서버는 직접 세팅해야 한다고 해서 다른 분의 CentOS가상 서버를 빌려서 테스트 해봤다. OS세팅이 되면 직접 세팅할 거라, 시행착오를 겪었던 내용을 정리한다.
 

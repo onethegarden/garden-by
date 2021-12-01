@@ -1,10 +1,10 @@
 ---
 layout: post
-categories: ["React"]
+categories: ['React']
 title: 번역 CRA Supported Browsers and Features
 ---
 
-# Supported Browsers and Features
+## Supported Browsers and Features
 
 [CRA Supported Browsers and Features](https://create-react-app.dev/docs/supported-browsers-features/) 를 번역한 글이다. 원문은 이 링크를 참조하면 된다.
 
