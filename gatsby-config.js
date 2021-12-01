@@ -1,40 +1,40 @@
 module.exports = {
   siteMetadata: {
-    title: "Gardenby Blog",
-    siteUrl: "https://gardenby.gatsbyjs.io/",
-    author: "jeongwonHan",
-    description: "한정원 블로그",
+    title: 'onethegarden Blog',
+    siteUrl: 'https://gardenby.gatsbyjs.io/',
+    author: 'onethegarden',
+    description: '한정원 블로그',
   },
   plugins: [
-    "gatsby-plugin-gatsby-cloud",
-    "gatsby-plugin-typescript",
-    "gatsby-plugin-styled-components",
-    "gatsby-plugin-image",
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-react-helmet",
+    'gatsby-plugin-gatsby-cloud',
+    'gatsby-plugin-typescript',
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-image',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-react-helmet',
     {
-      resolve: "gatsby-plugin-robots-txt",
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
-        policy: [{ userAgent: "*", allow: "/" }],
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     {
-      resolve: "gatsby-plugin-canonical-urls",
+      resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: "<https://gardenby.gatsbyjs.io/>",
+        siteUrl: '<https://gardenby.gatsbyjs.io/>',
         stripQueryString: true,
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
         name: `blog`,
         path: `${__dirname}/src/blog`,
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/images`,
       },
@@ -47,8 +47,8 @@ module.exports = {
             resolve: `gatsby-remark-vscode`,
             options: {
               theme: {
-                default: "Solarized Light",
-                dark: "Monokai Dimmed",
+                default: 'Solarized Light',
+                dark: 'Monokai Dimmed',
               },
             },
           },
@@ -56,11 +56,11 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-remark-copy-linked-files",
+      resolve: 'gatsby-remark-copy-linked-files',
       options: {},
     },
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
           include: /assets/,

@@ -1,29 +1,19 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 type NavigationProps = {
   currentMenu: string;
-  onClickToggleButton: (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
+  onClickToggleButton: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 function Navigation({ currentMenu, onClickToggleButton }: NavigationProps) {
   return (
     <NavigationBlock>
-      <ToggleButton
-        onClick={onClickToggleButton}
-        isActive={currentMenu === "post"}
-        name="post"
-      >
+      <ToggleButton onClick={onClickToggleButton} isActive={currentMenu === 'post'} name="post">
         post
       </ToggleButton>
       <span> | </span>
-      <ToggleButton
-        onClick={onClickToggleButton}
-        isActive={currentMenu === "category"}
-        name="category"
-      >
+      <ToggleButton onClick={onClickToggleButton} isActive={currentMenu === 'category'} name="category">
         categories
       </ToggleButton>
     </NavigationBlock>
@@ -31,10 +21,10 @@ function Navigation({ currentMenu, onClickToggleButton }: NavigationProps) {
 }
 
 const NavigationBlock = styled.nav`
-  border-bottom: solid 1px #f5f5f5;
+  border-bottom: solid 1px ${({ theme }) => theme.color.gray2};
   line-height: 30px;
   span {
-    color: #b6b6b6;
+    color: ${({ theme }) => theme.color.gray4};
   }
 `;
 
@@ -43,15 +33,15 @@ const ToggleButton = styled.button<{ isActive: boolean }>`
   line-height: 30px;
   letter-spacing: 2pt;
   text-decoration: none;
-  color: #b6b6b6;
+  color: ${({ theme }) => theme.color.gray4};
   font-size: 12px;
   font-size: 1.2rem;
   padding: 0 10px;
   ${({ isActive }) =>
     isActive &&
     css`
-      border-bottom: solid 2px #000;
-      color: #333337;
+      border-bottom: solid 2px ${({ theme }) => theme.color.blue4};
+      color: ${({ theme }) => theme.color.blue4};
     `}
 `;
 export default Navigation;

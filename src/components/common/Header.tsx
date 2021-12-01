@@ -1,7 +1,7 @@
-import { Link } from "gatsby";
-import React from "react";
-import styled from "styled-components";
-import SearchIcon from "../../assets/search.svg";
+import { Link } from 'gatsby';
+import React from 'react';
+import styled from 'styled-components';
+import SearchIcon from '../../assets/search.svg';
 
 type HeaderProps = {
   githubProfile: string;
@@ -21,13 +21,13 @@ function Header({ githubProfile, title }: HeaderProps) {
           </SiteTitle>
         </HeaderWrapper>
         <HeaderWrapper>
-          <button
+          {/* <button
             onClick={() => {
-              console.log("button");
+              console.log('button');
             }}
           >
             <SearchIcon />
-          </button>
+          </button> */}
         </HeaderWrapper>
       </HeaderContainer>
     </HeaderBlock>
@@ -43,7 +43,7 @@ const HeaderBlock = styled.header`
   position: fixed;
   transform: translateX(-50%);
   backdrop-filter: blur(3px);
-  background-color: #ffffffd9;
+  background-color: ${({ theme }) => theme.color.gray1};
 `;
 const HeaderContainer = styled.div`
   position: relative;
@@ -67,7 +67,7 @@ const HeaderWrapper = styled.div`
 `;
 const SiteTitle = styled.div`
   a {
-    color: #000;
+    color: ${({ theme }) => theme.color.black};
     text-decoration: none;
   }
   font-size: 1.2rem;

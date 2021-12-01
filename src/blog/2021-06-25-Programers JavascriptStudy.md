@@ -1,10 +1,8 @@
 ---
 layout: post
 title: Programers JavascriptStudy Review
-categories: ["Review"]
+categories: ['Review']
 ---
-
-# Programers JavascriptStudy Review
 
 > 프로그래머스 자바스크립트 스터디에서 배운 것들과 정보들을 정리하고자 한다.
 
@@ -83,7 +81,7 @@ categories: ["Review"]
     ```javascript
     // api.js
     const request = async () => {
-      const response = await fetch("FAKE_URL");
+      const response = await fetch('FAKE_URL');
       if (!response.ok) {
         throw new Error(response);
       }
@@ -104,13 +102,13 @@ categories: ["Review"]
       } catch (e) {
         switch (e.status) {
           case HTTP_STATUS_CODE.BAD_REQUEST:
-            console.error("잘못된 요청이");
+            console.error('잘못된 요청이');
             break;
           case HTTP_STATUS_CODE.NOT_FOUND:
-            console.error("찾는 데이터가 없음");
+            console.error('찾는 데이터가 없음');
             break;
           case HTTP_STATUS_CODE.SERVER_ERROR:
-            console.error("서버 에러");
+            console.error('서버 에러');
             break;
           default:
             console.error(`에러: ${e}`);
@@ -190,7 +188,7 @@ categories: ["Review"]
     this.name = name;
     this.age = age;
   }
-  const tabby1 = Cat("nana", 5);
+  const tabby1 = Cat('nana', 5);
   console.log(tabby1.name); //출력되는 값은?
   ```
 
@@ -207,7 +205,7 @@ categories: ["Review"]
   ```javascript
   (function (name) {
     console.log(`hello ${name}`);
-  })("roto");
+  })('roto');
   ```
 
   > 🔑 `hello roto`가 출력된다.
@@ -222,11 +220,11 @@ categories: ["Review"]
 
   ```javascript
   var idiots = {
-    name: "idiots",
-    genre: "punk rock",
+    name: 'idiots',
+    genre: 'punk rock',
     members: {
       roto: {
-        memberName: "roto",
+        memberName: 'roto',
         play: function () {
           console.log(`band ${this.name} ${this.memberName} play start`);
         },
@@ -261,9 +259,9 @@ categories: ["Review"]
 
   var theOralcigarettes = new RockBand([
     {
-      name: "takuya",
+      name: 'takuya',
       perform: function () {
-        console.log(" a e u i a e u i");
+        console.log(' a e u i a e u i');
       },
     },
   ]);
@@ -302,7 +300,7 @@ categories: ["Review"]
   >           member.perform();
   >         });
   >       }.bind(this),
-  >       1000
+  >       1000,
   >     );
   >   };
   > }

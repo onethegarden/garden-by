@@ -1,6 +1,7 @@
-import React, { FunctionComponent } from "react";
-import styled from "styled-components";
-import { Link } from "gatsby";
+import React, { FunctionComponent } from 'react';
+import styled from 'styled-components';
+import { Link } from 'gatsby';
+import theme from '../../lib/styles/theme';
 
 export interface CategoryListProps {
   selectedCategory: string;
@@ -13,10 +14,7 @@ type CategoryItemProps = {
   active: boolean;
 };
 
-const CategoryList: FunctionComponent<CategoryListProps> = function ({
-  selectedCategory,
-  categoryList,
-}) {
+const CategoryList: FunctionComponent<CategoryListProps> = function ({ selectedCategory, categoryList }) {
   return (
     <CategoryListWrapper>
       {Object.entries(categoryList).map(([name, count]) => (
@@ -43,20 +41,19 @@ const Category = styled.li<CategoryItemProps>`
   margin-right: 2rem;
   padding: 0.5rem 0;
   font-size: 18px;
-  font-weight: ${({ active }) => (active ? "600" : "400")};
+  font-weight: ${({ active }) => (active ? '600' : '400')};
   margin-right: 1rem;
   border-radius: 0.3rem;
   padding: 0.2rem 1rem;
-  background-color: #fefeff;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  &:hover {
-    background-color: #f0f1f3;
-    transition-duration: 0.5s;
-  }
+  background-color: ${({ theme }) => theme.color.gray1};
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   a {
-    color: #696969;
+    color: ${({ active, theme }) => (active ? theme.color.blue4 : theme.color.gray3)};
     text-decoration: none;
+  }
+  &:hover {
+    background-color: ${({ theme }) => theme.color.gray2};
+    transition-duration: 0.5s;
   }
 `;
 

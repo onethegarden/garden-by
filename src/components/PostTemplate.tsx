@@ -1,10 +1,10 @@
-import React from "react";
-import Layout from "../components/layout";
-import styled from "styled-components";
-import "gatsby-remark-vscode/styles.css";
-import { graphql } from "gatsby";
-import MarkDownStyle from "./common/MarkdownStyle";
-import { Data } from "../pages/index";
+import React from 'react';
+import Layout from '../components/layout';
+import styled from 'styled-components';
+import 'gatsby-remark-vscode/styles.css';
+import { graphql } from 'gatsby';
+import MarkDownStyle from './common/MarkdownStyle';
+import { Data } from '../pages/index';
 
 type PostTempalteProps = {
   data: Data;
@@ -24,16 +24,14 @@ const PostTemplate = React.memo(
         <Layout pageTitle="post">
           <PostTitle>{frontmatter.title}</PostTitle>
           <MarkDownStyle />
-          <MarkdownBlock
-            dangerouslySetInnerHTML={{ __html: html }}
-          ></MarkdownBlock>
+          <MarkdownBlock dangerouslySetInnerHTML={{ __html: html }}></MarkdownBlock>
         </Layout>
       </>
     );
-  }
+  },
 );
 
-PostTemplate.displayName = "PostTemplate";
+PostTemplate.displayName = 'PostTemplate';
 
 export const queryMarkdownDataBySlug = graphql`
   query queryMarkdownDataBySlug($slug: String) {
@@ -54,16 +52,16 @@ export const queryMarkdownDataBySlug = graphql`
 `;
 const PostTitle = styled.h1`
   font-weight: 800;
-
   font-size: 2.5rem;
   margin-top: 3rem;
   margin-bottom: 1rem;
+  border-bottom: 0.8px solid #afafaf;
 `;
 const MarkdownBlock = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 3rem 0;
   word-break: break-all;
   line-height: 1.8;
   font-size: 16px;
@@ -109,9 +107,8 @@ const MarkdownBlock = styled.div`
   blockquote {
     margin: 2rem 0;
     padding: 1rem 1.2rem;
-    border-left: 4px solid #7b7b7b;
-    font-weight: 700;
-    background-color: #f5f5f5;
+    border-left: 4px solid ${({ theme }) => theme.color.blue4};
+    background-color: ${({ theme }) => theme.color.blue1};
   }
 
   ol,
@@ -120,17 +117,17 @@ const MarkdownBlock = styled.div`
   }
 
   hr {
-    border: 1px solid #000000;
+    border: 1px solid ${({ theme }) => theme.color.black};
     margin: 100px 0;
   }
 
   a {
-    color: #4263eb;
+    color: ${({ theme }) => theme.color.blue4};
     text-decoration: underline;
   }
 
   img {
-    width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
     padding: 1rem;
   }
