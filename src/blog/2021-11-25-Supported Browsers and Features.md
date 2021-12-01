@@ -1,7 +1,7 @@
 ---
 layout: post
 categories: ["React"]
-title: [번역] CRA Supported Browsers and Features
+title: 번역 CRA Supported Browsers and Features
 ---
 
 # Supported Browsers and Features
