@@ -1,21 +1,23 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { Link } from 'gatsby';
 
 type NavigationProps = {
-  currentMenu: string;
-  onClickToggleButton: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  pathname: string;
 };
 
-function Navigation({ currentMenu, onClickToggleButton }: NavigationProps) {
+function Navigation({ pathname }: NavigationProps) {
+  const menus = [
+    { name: 'post', link: '/' },
+    { name: 'categories', link: '/categories' },
+  ];
   return (
     <NavigationBlock>
-      <ToggleButton onClick={onClickToggleButton} isActive={currentMenu === 'post'} name="post">
-        post
-      </ToggleButton>
-      <span> | </span>
-      <ToggleButton onClick={onClickToggleButton} isActive={currentMenu === 'category'} name="category">
-        categories
-      </ToggleButton>
+      {menus.map(menu => (
+        <ToggleLink key={menu.name} to={`${menu.link}`} isActive={pathname === menu.link}>
+          {menu.name}
+        </ToggleLink>
+      ))}
     </NavigationBlock>
   );
 }
@@ -28,7 +30,7 @@ const NavigationBlock = styled.nav`
   }
 `;
 
-const ToggleButton = styled.button<{ isActive: boolean }>`
+const ToggleLink = styled(Link)<{ isActive: boolean }>`
   display: inline-block;
   line-height: 30px;
   letter-spacing: 2pt;

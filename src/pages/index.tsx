@@ -1,13 +1,10 @@
-import React, { useMemo, useState } from "react";
-import styled from "styled-components";
-import { graphql } from "gatsby";
-import { useCategory } from "../hooks/useCategory";
-import Layout from "../components/layout";
-import Img, { FluidObject } from "gatsby-image";
-import queryString, { ParsedQuery } from "query-string";
-import CategoryList from "../components/Main/CategoryList";
-import Navigation from "../components/Main/Navigation";
-import PostItem from "../components/Main/PostItem";
+import React, { useMemo, useState } from 'react';
+import styled from 'styled-components';
+import { graphql } from 'gatsby';
+import Layout from '../components/layout';
+import { FluidObject } from 'gatsby-image';
+import queryString, { ParsedQuery } from 'query-string';
+import PostItem from '../components/Main/PostItem';
 
 type IndexPageProps = {
   location: {
@@ -23,11 +20,7 @@ function IndexPage({
   },
 }: IndexPageProps) {
   const parsed: ParsedQuery<string> = queryString.parse(search);
-  const selectedCategory: string =
-    typeof parsed.category !== "string" || !parsed.category
-      ? "All"
-      : parsed.category;
-  const categoryList = useMemo(() => useCategory(edges), []);
+  const selectedCategory: string = typeof parsed.category !== 'string' || !parsed.category ? 'All' : parsed.category;
   const filteredPost = edges.filter(
     ({
       node: {
@@ -35,35 +28,16 @@ function IndexPage({
       },
     }: {
       node: { frontmatter: { categories: string[] } };
-    }) =>
-      selectedCategory !== "All" ? categories.includes(selectedCategory) : true
+    }) => (selectedCategory !== 'All' ? categories.includes(selectedCategory) : true),
   );
-  const [currentMenu, setCurrentMenu] = useState("post");
-  const onClickToggleButton = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    setCurrentMenu(e.currentTarget.name);
-  };
 
   return (
     <Layout pageTitle="Blog">
-      <Navigation
-        currentMenu={currentMenu}
-        onClickToggleButton={onClickToggleButton}
-      />
-      {currentMenu === "category" && (
-        <CategoryList
-          selectedCategory={selectedCategory}
-          categoryList={categoryList}
-        />
-      )}
-      {currentMenu === "post" && (
-        <PostUl>
-          {filteredPost.map((edge: Edge) => (
-            <PostItem key={edge.node.id} post={edge.node} />
-          ))}
-        </PostUl>
-      )}
+      <PostUl>
+        {filteredPost.map((edge: Edge) => (
+          <PostItem key={edge.node.id} post={edge.node} />
+        ))}
+      </PostUl>
     </Layout>
   );
 }
@@ -81,12 +55,7 @@ export const query = graphql`
             categories
             thumbnail {
               childImageSharp {
-                fluid(
-                  maxWidth: 768
-                  maxHeight: 200
-                  fit: INSIDE
-                  quality: 100
-                ) {
+                fluid(maxWidth: 768, maxHeight: 200, fit: INSIDE, quality: 100) {
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
@@ -136,7 +105,7 @@ export interface Node {
   };
 }
 const PostUl = styled.ul`
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding-left: 0;
   display: grid;
   @media (min-width: 768px) {
