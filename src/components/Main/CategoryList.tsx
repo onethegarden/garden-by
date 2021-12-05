@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import theme from '../../lib/styles/theme';
 
 export type CategoryListProps = {
   categoryList: {
