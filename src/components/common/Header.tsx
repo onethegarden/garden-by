@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
-import SearchIcon from '../../assets/search.svg';
+import SearchIcon from '../../images/search.svg';
 
 type HeaderProps = {
   githubProfile: string;

@@ -5,6 +5,7 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import GlobalStyle from '../components/common/GlobalStyle';
 import Header from '../components/common/Header';
 import theme from '../lib/styles/theme';
+import Favicon from '../images/favicon.ico';
 
 type LayoutType = {
   pageTitle: string;
@@ -34,6 +35,8 @@ function Layout({ pageTitle, children }: LayoutType) {
             {pageTitle} | {title}
           </title>
 
+          <link rel="shortcut icon" href={Favicon} />
+          <link rel="icon" href={Favicon} />
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
