@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
-import { useLocation } from '@reach/router';
 import styled, { ThemeProvider } from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import GlobalStyle from '../components/common/GlobalStyle';
 import Header from '../components/common/Header';
 import theme from '../lib/styles/theme';
-import Navigation from '../components/Main/Navigation';
 
 type LayoutType = {
   pageTitle: string;
@@ -26,7 +24,6 @@ function Layout({ pageTitle, children }: LayoutType) {
       }
     }
   `);
-  const location = useLocation();
   const { title, siteUrl, author, description } = data.site.siteMetadata;
   const githubProfile = 'https://avatars1.githubusercontent.com/u/51187540?s=460&v=4';
   return (
@@ -57,7 +54,6 @@ function Layout({ pageTitle, children }: LayoutType) {
         </Helmet>
         <GlobalStyle />
         <Header githubProfile={githubProfile} title={title} />
-        <Navigation pathname={location.pathname} />
         <Contents>{children}</Contents>
       </Container>
     </ThemeProvider>

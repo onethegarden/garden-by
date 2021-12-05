@@ -1,10 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
+import { useLocation } from '@reach/router';
 import Layout from '../components/layout';
 import { FluidObject } from 'gatsby-image';
 import queryString, { ParsedQuery } from 'query-string';
 import PostItem from '../components/Main/PostItem';
+import Navigation from '../components/Main/Navigation';
 
 type IndexPageProps = {
   location: {
@@ -31,13 +33,17 @@ function IndexPage({
     }) => (selectedCategory !== 'All' ? categories.includes(selectedCategory) : true),
   );
 
+  const location = useLocation();
   return (
     <Layout pageTitle="Blog">
-      <PostUl>
-        {filteredPost.map((edge: Edge) => (
-          <PostItem key={edge.node.id} post={edge.node} />
-        ))}
-      </PostUl>
+      <>
+        <Navigation pathname={location.pathname} />
+        <PostUl>
+          {filteredPost.map((edge: Edge) => (
+            <PostItem key={edge.node.id} post={edge.node} />
+          ))}
+        </PostUl>
+      </>
     </Layout>
   );
 }
